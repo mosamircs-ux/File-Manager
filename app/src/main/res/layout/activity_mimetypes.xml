@@ -61,7 +61,8 @@
         <com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller
             android:id="@+id/mimetypes_fastscroller"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/mimetypes_ad_container">
 
             <org.fossify.commons.views.MyRecyclerView
                 android:id="@+id/mimetypes_list"
@@ -74,5 +75,15 @@
                 app:layoutManager="org.fossify.commons.views.MyGridLayoutManager" />
 
         </com.qtalk.recyclerviewfastscroller.RecyclerViewFastScroller>
+
+        <FrameLayout
+            android:id="@+id/mimetypes_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_lumina_ad_bar"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone" />
     </RelativeLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

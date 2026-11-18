@@ -15,6 +15,9 @@ gestureviews = "2.9.0"
 rootshell = "bc7e5d398e"
 roottools = "965c154e20"
 zip4j = "2.11.6"
+#AdMob
+play-services-ads = "23.6.0"
+user-messaging-platform = "3.1.0"
 #Gradle
 gradlePlugins-agp = "9.4.1"
 #build
@@ -37,6 +40,9 @@ gestureviews = { module = "com.alexvasilkov:gesture-views", version.ref = "gestu
 rootshell = { module = "com.github.naveensingh:RootShell", version.ref = "rootshell" }
 roottools = { module = "com.github.naveensingh:RootTools", version.ref = "roottools" }
 zip4j = { module = "net.lingala.zip4j:zip4j", version.ref = "zip4j" }
+#AdMob
+play-services-ads = { module = "com.google.android.gms:play-services-ads", version.ref = "play-services-ads" }
+user-messaging-platform = { module = "com.google.android.ump:user-messaging-platform", version.ref = "user-messaging-platform" }
 [plugins]
 android = { id = "com.android.application", version.ref = "gradlePlugins-agp" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }

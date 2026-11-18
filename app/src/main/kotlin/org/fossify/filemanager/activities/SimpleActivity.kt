@@ -2,6 +2,7 @@ package org.fossify.filemanager.activities
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.os.Bundle
 import android.os.Environment
 import android.provider.Settings
 import org.fossify.commons.activities.BaseSimpleActivity
@@ -15,6 +16,30 @@ import org.fossify.commons.helpers.isRPlus
 import org.fossify.filemanager.R
 
 open class SimpleActivity : BaseSimpleActivity() {
+    private var isInBaseSimpleOnCreate = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        isInBaseSimpleOnCreate = true
+        try {
+            super.onCreate(savedInstanceState)
+        } finally {
+            isInBaseSimpleOnCreate = false
+        }
+    }
+
+    override fun getPackageName(): String {
+        if (isInBaseSimpleOnCreate) {
+            val caller = Thread.currentThread().stackTrace.firstOrNull {
+                it.className == "org.fossify.commons.activities.BaseSimpleActivity" && it.methodName == "onCreate"
+            }
+            val immediateCaller = Thread.currentThread().stackTrace.getOrNull(3)
+            if (caller != null && immediateCaller?.className == "org.fossify.commons.activities.BaseSimpleActivity") {
+                return "org.fossify.filemanager"
+            }
+        }
+        return super.getPackageName()
+    }
+
     override fun getAppIconIDs() = arrayListOf(
         R.mipmap.ic_launcher_red,
         R.mipmap.ic_launcher_pink,
@@ -43,7 +68,7 @@ open class SimpleActivity : BaseSimpleActivity() {
 
     override fun getAppLauncherName() = getString(R.string.app_launcher_name)
 
-    override fun getRepositoryName() = "File-Manager"
+    override fun getRepositoryName() = "Lumina-Files"
 
    @SuppressLint("NewApi")
     override fun onActivityResult(requestCode: Int, resultCode: Int, resultData: Intent?) {

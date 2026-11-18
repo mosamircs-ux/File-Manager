@@ -2,3 +2,5 @@
 -dontnote org.apache.http.**
 -keep class org.fossify.** { *; }
 -dontwarn org.fossify.**
+-keep class com.google.android.gms.ads.** { *; }
+-keep class com.google.android.ump.** { *; }

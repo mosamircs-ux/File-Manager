@@ -3,7 +3,7 @@
     <string name="images">รูปภาพ</string>
     <string name="videos">วิดีโอ</string>
     <string name="audio">เสียง</string>
-    <string name="app_launcher_name">ตัวจัดการไฟล์</string>
+    <string name="app_launcher_name">Lumina Files</string>
     <string name="press_back_again">กดย้อนกลับอีกครั้งเพื่อออก</string>
     <string name="go_to_home_folder">ไปที่โฟลเดอร์หน้าแรก</string>
     <string name="set_as_home_folder">ตั้งเป็นโฟลเดอร์หน้าแรก</string>

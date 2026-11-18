@@ -1,3 +1,79 @@
-<vector xmlns:android="http://schemas.android.com/apk/res/android" android:width="108dp" android:height="108dp" android:viewportWidth="512" android:viewportHeight="512">
-    <path android:fillColor="#ffffff" android:pathData="M353.72 215.26H209.59q-15.79 0-27.5 9.93t-11.71 25.21v66.72l20.12-66.97q2.04-6.62 7.51-10.57 5.48-3.95 12.1-3.95h131.4q10.44 0 16.43 8.28 5.98 8.28 3.18 17.95l-18.33 61.12q-2.04 6.62-7.51 10.57-5.48 3.95-12.1 3.95H170.37q-8.4 0-14.39-5.98-5.98-6-5.98-14.4V194.88q0-8.4 5.98-14.39 5.98-5.98 14.39-5.98h52.71q4.07 0 7.77 1.53 3.69 1.53 6.49 4.33l14.52 14.52h81.49q8.4 0 14.39 5.98 5.98 5.98 5.98 14.39z" android:strokeWidth="0.254652"/>
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Soft drop shadow under folder -->
+    <path
+        android:fillColor="#44020617"
+        android:pathData="M28,74C28,72 40,71 54,71C68,71 80,72 80,74C80,76.5 68,78 54,78C40,78 28,76.5 28,74Z" />
+
+    <!-- Back folder shell with top-left tab -->
+    <path android:pathData="M31,34C27.69,34 25,36.69 25,40V68C25,71.31 27.69,74 31,74H77C80.31,74 83,71.31 83,68V44C83,40.69 80.31,38 77,38H55.5L51.2,34.8C50.15,34.28 49,34 47.8,34H31Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="83"
+                android:endY="74"
+                android:startX="25"
+                android:startY="34"
+                android:type="linear">
+                <item
+                    android:color="#818CF8"
+                    android:offset="0.0" />
+                <item
+                    android:color="#4F46E5"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Luminous document card peeking from folder -->
+    <path
+        android:fillColor="#F0F9FF"
+        android:pathData="M34,42C34,40.34 35.34,39 37,39H71C72.66,39 74,40.34 74,42V56H34V42Z" />
+
+    <!-- Subtle lines on peeking document -->
+    <path
+        android:fillColor="#BAE6FD"
+        android:pathData="M39,43.5H59C59.83,43.5 60.5,44.17 60.5,45C60.5,45.83 59.83,46.5 59,46.5H39C38.17,46.5 37.5,45.83 37.5,45C37.5,44.17 38.17,43.5 39,43.5Z" />
+
+    <!-- Front electric cyan folder pocket -->
+    <path android:pathData="M25,50C25,47.24 27.24,45 30,45H78C80.76,45 83,47.24 83,50V68C83,71.31 80.31,74 77,74H31C27.69,74 25,71.31 25,68V50Z">
+        <aapt:attr name="android:fillColor">
+            <gradient
+                android:endX="80"
+                android:endY="74"
+                android:startX="28"
+                android:startY="45"
+                android:type="linear">
+                <item
+                    android:color="#67E8F9"
+                    android:offset="0.0" />
+                <item
+                    android:color="#06B6D4"
+                    android:offset="0.48" />
+                <item
+                    android:color="#0284C7"
+                    android:offset="1.0" />
+            </gradient>
+        </aapt:attr>
+    </path>
+
+    <!-- Subtle top glossy highlight on front folder -->
+    <path
+        android:fillColor="#55FFFFFF"
+        android:pathData="M30,45H78C80.2,45 82.06,46.42 82.73,48.4C81.8,47.2 80.1,46.5 78,46.5H30C27.9,46.5 26.2,47.2 25.27,48.4C25.94,46.42 27.8,45 30,45Z" />
+
+    <!-- Iconic Lumina 4-point star emblem -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M68,53L69.65,57.85L74.5,59.5L69.65,61.15L68,66L66.35,61.15L61.5,59.5L66.35,57.85Z" />
+
+    <!-- Secondary micro sparkle -->
+    <path
+        android:fillColor="#CCFBF1"
+        android:pathData="M59,51L59.7,53.05L61.75,53.75L59.7,54.45L59,56.5L58.3,54.45L56.25,53.75L58.3,53.05Z" />
 </vector>

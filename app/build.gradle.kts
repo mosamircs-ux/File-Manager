@@ -23,7 +23,8 @@ fun hasSigningVars(): Boolean {
 
 base {
     val versionCode = project.property("VERSION_CODE").toString().toInt()
-    archivesName = "file-manager-$versionCode"
+    val versionName = project.property("VERSION_NAME").toString()
+    archivesName = "lumina-files-$versionName-$versionCode"
 }
 
 android {
@@ -67,9 +68,15 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"ca-app-pub-3940256099942544/9214589741\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"ca-app-pub-3940256099942544/1033173712\"")
         }
         release {
             isMinifyEnabled = true
+            manifestPlaceholders["admobAppId"] = project.property("ADMOB_APP_ID").toString()
+            buildConfigField("String", "ADMOB_BANNER_ID", "\"${project.property("ADMOB_BANNER_ID")}\"")
+            buildConfigField("String", "ADMOB_INTERSTITIAL_ID", "\"${project.property("ADMOB_INTERSTITIAL_ID")}\"")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -111,7 +118,7 @@ android {
         )
     }
 
-    namespace = project.property("APP_ID").toString()
+    namespace = "org.fossify.filemanager"
 
     lint {
         checkReleaseBuilds = false
@@ -144,5 +151,7 @@ dependencies {
     implementation(libs.gestureviews)
     implementation(libs.autofittextview)
     implementation(libs.zip4j)
+    implementation(libs.play.services.ads)
+    implementation(libs.user.messaging.platform)
     detektPlugins(libs.compose.detekt)
 }

@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_launcher_name">File Manager</string>
+    <string name="app_launcher_name">Lumina Files</string>
+    <string name="lumina_tagline">Fast, Smart &amp; Secure File Manager</string>
+    <string name="lumina_about_description">Lumina Files gives you blazing-fast file browsing, intelligent storage analytics, ZIP compression, built-in text editing, and private folder security in one sleek interface.</string>
+    <string name="lumina_privacy_settings">Ad Privacy Settings</string>
+    <string name="lumina_license_info">Open Source License (GNU GPLv3)</string>
+    <string name="lumina_license_summary">Based on open-source software licensed under the GNU General Public License v3.0.</string>
+    <string name="lumina_version_format">Version %s</string>
     <string name="press_back_again">Press back again to exit</string>
     <string name="go_to_home_folder">Go to home folder</string>
     <string name="set_as_home_folder">Set as home folder</string>

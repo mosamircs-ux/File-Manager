@@ -10,8 +10,10 @@ import android.os.Handler
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.viewpager.widget.ViewPager
+import com.google.android.gms.ads.AdView
 import com.stericson.RootTools.RootTools
 import me.grantland.widget.AutofitHelper
+import org.fossify.filemanager.helpers.AdManager
 import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.extensions.appLaunched
 import org.fossify.commons.extensions.appLockManager
@@ -91,11 +93,12 @@ class MainActivity : SimpleActivity() {
     private var mStoredDateFormat = ""
     private var mStoredTimeFormat = ""
     private var mStoredShowTabs = 0
+    private var bannerAdView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-        appLaunched(BuildConfig.APPLICATION_ID)
+        config.appRunCount++
         setupOptionsMenu()
         refreshMenuItems()
         mTabsToShow = getTabsList()
@@ -120,10 +123,19 @@ class MainActivity : SimpleActivity() {
             checkIfRootAvailable()
             checkInvalidFavorites()
         }
+
+        AdManager.initializeWithConsent(this) {
+            runOnUiThread {
+                if (!isFinishing && !isDestroyed && bannerAdView == null) {
+                    bannerAdView = AdManager.loadAdaptiveBanner(this, binding.mainAdContainer)
+                }
+            }
+        }
     }
 
     override fun onResume() {
         super.onResume()
+        bannerAdView?.resume()
         if (mStoredShowTabs != config.showTabs) {
             config.lastUsedViewPagerPage = 0
             System.exit(0)
@@ -156,9 +168,16 @@ class MainActivity : SimpleActivity() {
     }
 
     override fun onPause() {
+        bannerAdView?.pause()
         super.onPause()
         storeStateVariables()
         config.lastUsedViewPagerPage = binding.mainViewPager.currentItem
+    }
+
+    override fun onDestroy() {
+        bannerAdView?.destroy()
+        bannerAdView = null
+        super.onDestroy()
     }
 
     override fun onBackPressedCompat(): Boolean {
@@ -211,7 +230,7 @@ class MainActivity : SimpleActivity() {
 
             findItem(R.id.column_count).isVisible = currentViewType == VIEW_TYPE_GRID && currentFragment !is StorageFragment
 
-            findItem(R.id.more_apps_from_us).isVisible = resources.getBoolean(R.bool.is_google_play_build)
+            findItem(R.id.more_apps_from_us).isVisible = false
             findItem(R.id.settings).isVisible = !isCreateDocumentIntent
             findItem(R.id.about).isVisible = !isCreateDocumentIntent
         }
@@ -573,25 +592,13 @@ class MainActivity : SimpleActivity() {
 
     private fun launchSettings() {
         hideKeyboard()
-        startActivity(Intent(applicationContext, SettingsActivity::class.java))
+        AdManager.maybeShowInterstitial(this) {
+            startActivity(Intent(applicationContext, SettingsActivity::class.java))
+        }
     }
 
     private fun launchAbout() {
-        val licenses = LICENSE_GLIDE or LICENSE_PATTERN or LICENSE_REPRINT or LICENSE_GESTURE_VIEWS or LICENSE_AUTOFITTEXTVIEW or LICENSE_ZIP4J
-
-        val faqItems = arrayListOf(
-            FAQItem(R.string.faq_3_title_commons, R.string.faq_3_text_commons),
-            FAQItem(R.string.faq_9_title_commons, R.string.faq_9_text_commons)
-        )
-
-        if (resources.getBoolean(R.bool.is_google_play_build)) {
-            faqItems.add(FAQItem(R.string.faq_2_title_commons, R.string.faq_2_text_commons))
-            faqItems.add(FAQItem(R.string.faq_6_title_commons, R.string.faq_6_text_commons))
-            faqItems.add(FAQItem(R.string.faq_7_title_commons, R.string.faq_7_text_commons))
-            faqItems.add(FAQItem(R.string.faq_10_title_commons, R.string.faq_10_text_commons))
-        }
-
-        startAboutActivity(R.string.app_name, licenses, BuildConfig.VERSION_NAME, faqItems, true)
+        startActivity(Intent(applicationContext, AboutLuminaActivity::class.java))
     }
 
     private fun checkIfRootAvailable() {

@@ -1,4 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Lumina Files Brand Palette: Deep Ocean Indigo & Electric Cyan -->
+    <color name="lumina_indigo_primary">#4F46E5</color>
+    <color name="lumina_indigo_light">#6366F1</color>
+    <color name="lumina_indigo_dark">#1E1B4B</color>
+    <color name="lumina_navy_bg">#0F172A</color>
+    <color name="lumina_slate_card">#1E293B</color>
+    <color name="lumina_cyan_accent">#06B6D4</color>
+    <color name="lumina_cyan_bright">#22D3EE</color>
+    <color name="lumina_card_stroke">#296366F1</color>
+    <color name="lumina_badge_bg">#1F06B6D4</color>
+    <color name="lumina_ad_divider">#2494A3B8</color>
 
+    <!-- Storage Analysis Category Accents -->
+    <color name="lumina_cat_images">#06B6D4</color>
+    <color name="lumina_cat_videos">#8B5CF6</color>
+    <color name="lumina_cat_audio">#EC4899</color>
+    <color name="lumina_cat_documents">#4F46E5</color>
+    <color name="lumina_cat_archives">#F59E0B</color>
+    <color name="lumina_cat_others">#14B8A6</color>
+
+    <!-- Override base library defaults -->
+    <color name="color_primary">#4F46E5</color>
+    <color name="color_accent">#06B6D4</color>
+    <color name="default_primary_color">#4F46E5</color>
+    <color name="default_accent_color">#06B6D4</color>
 </resources>

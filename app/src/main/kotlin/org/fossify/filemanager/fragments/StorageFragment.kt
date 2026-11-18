@@ -149,35 +149,35 @@ class StorageFragment(
         context.updateTextColors(binding.root)
 
         val properPrimaryColor = context.getProperPrimaryColor()
-        val redColor = context.resources.getColor(R.color.md_red_700)
-        val greenColor = context.resources.getColor(R.color.md_green_700)
-        val lightBlueColor = context.resources.getColor(R.color.md_light_blue_700)
-        val yellowColor = context.resources.getColor(R.color.md_yellow_700)
-        val tealColor = context.resources.getColor(R.color.md_teal_700)
-        val pinkColor = context.resources.getColor(R.color.md_pink_700)
+        val imagesColor = context.resources.getColor(R.color.lumina_cat_images, context.theme)
+        val videosColor = context.resources.getColor(R.color.lumina_cat_videos, context.theme)
+        val audioColor = context.resources.getColor(R.color.lumina_cat_audio, context.theme)
+        val documentsColor = context.resources.getColor(R.color.lumina_cat_documents, context.theme)
+        val archivesColor = context.resources.getColor(R.color.lumina_cat_archives, context.theme)
+        val othersColor = context.resources.getColor(R.color.lumina_cat_others, context.theme)
 
         volumes.values.forEach { volumeBinding ->
             volumeBinding.apply {
                 mainStorageUsageProgressbar.setIndicatorColor(properPrimaryColor)
                 mainStorageUsageProgressbar.trackColor = properPrimaryColor.adjustAlpha(LOWER_ALPHA)
 
-                imagesProgressbar.setIndicatorColor(redColor)
-                imagesProgressbar.trackColor = redColor.adjustAlpha(LOWER_ALPHA)
+                imagesProgressbar.setIndicatorColor(imagesColor)
+                imagesProgressbar.trackColor = imagesColor.adjustAlpha(LOWER_ALPHA)
 
-                videosProgressbar.setIndicatorColor(greenColor)
-                videosProgressbar.trackColor = greenColor.adjustAlpha(LOWER_ALPHA)
+                videosProgressbar.setIndicatorColor(videosColor)
+                videosProgressbar.trackColor = videosColor.adjustAlpha(LOWER_ALPHA)
 
-                audioProgressbar.setIndicatorColor(lightBlueColor)
-                audioProgressbar.trackColor = lightBlueColor.adjustAlpha(LOWER_ALPHA)
+                audioProgressbar.setIndicatorColor(audioColor)
+                audioProgressbar.trackColor = audioColor.adjustAlpha(LOWER_ALPHA)
 
-                documentsProgressbar.setIndicatorColor(yellowColor)
-                documentsProgressbar.trackColor = yellowColor.adjustAlpha(LOWER_ALPHA)
+                documentsProgressbar.setIndicatorColor(documentsColor)
+                documentsProgressbar.trackColor = documentsColor.adjustAlpha(LOWER_ALPHA)
 
-                archivesProgressbar.setIndicatorColor(tealColor)
-                archivesProgressbar.trackColor = tealColor.adjustAlpha(LOWER_ALPHA)
+                archivesProgressbar.setIndicatorColor(archivesColor)
+                archivesProgressbar.trackColor = archivesColor.adjustAlpha(LOWER_ALPHA)
 
-                othersProgressbar.setIndicatorColor(pinkColor)
-                othersProgressbar.trackColor = pinkColor.adjustAlpha(LOWER_ALPHA)
+                othersProgressbar.setIndicatorColor(othersColor)
+                othersProgressbar.trackColor = othersColor.adjustAlpha(LOWER_ALPHA)
 
                 expandButton.applyColorFilter(context.getProperPrimaryColor())
             }
@@ -195,10 +195,18 @@ class StorageFragment(
     }
 
     private fun launchMimetypeActivity(mimetype: String, volumeName: String) {
-        Intent(context, MimeTypesActivity::class.java).apply {
-            putExtra(SHOW_MIMETYPE, mimetype)
-            putExtra(VOLUME_NAME, volumeName)
-            context.startActivity(this)
+        val openIntent: () -> Unit = {
+            val intent = Intent(context, MimeTypesActivity::class.java).apply {
+                putExtra(SHOW_MIMETYPE, mimetype)
+                putExtra(VOLUME_NAME, volumeName)
+            }
+            context.startActivity(intent)
+        }
+        val hostActivity = activity
+        if (hostActivity != null) {
+            org.fossify.filemanager.helpers.AdManager.maybeShowInterstitial(hostActivity, openIntent)
+        } else {
+            openIntent()
         }
     }
 

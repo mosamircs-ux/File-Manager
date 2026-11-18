@@ -9,6 +9,7 @@ import android.view.MenuItem
 import androidx.appcompat.widget.SearchView
 import androidx.core.view.MenuItemCompat
 import androidx.recyclerview.widget.GridLayoutManager
+import com.google.android.gms.ads.AdView
 import org.fossify.commons.dialogs.RadioGroupDialog
 import org.fossify.commons.extensions.*
 import org.fossify.commons.helpers.NavigationIcon
@@ -42,6 +43,7 @@ class MimeTypesActivity : SimpleActivity(), ItemOperationsListener {
     private var storedItems = ArrayList<ListItem>()
     private var currentViewType = VIEW_TYPE_LIST
     private var currentVolume = PRIMARY_VOLUME_NAME
+    private var bannerAdView: AdView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,11 +82,25 @@ class MimeTypesActivity : SimpleActivity(), ItemOperationsListener {
             mimetypesPlaceholder.setTextColor(getProperTextColor())
             mimetypesPlaceholder2.setTextColor(getProperTextColor())
         }
+
+        bannerAdView = AdManager.loadAdaptiveBanner(this, binding.mimetypesAdContainer)
     }
 
     override fun onResume() {
         super.onResume()
+        bannerAdView?.resume()
         setupTopAppBar(binding.mimetypesAppbar, NavigationIcon.Arrow, searchMenuItem = searchMenuItem)
+    }
+
+    override fun onPause() {
+        bannerAdView?.pause()
+        super.onPause()
+    }
+
+    override fun onDestroy() {
+        bannerAdView?.destroy()
+        bannerAdView = null
+        super.onDestroy()
     }
 
     private fun refreshMenuItems() {

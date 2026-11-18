@@ -20,7 +20,17 @@
             android:id="@+id/main_view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/main_tabs_holder" />
+            android:layout_above="@+id/main_ad_container" />
+
+        <FrameLayout
+            android:id="@+id/main_ad_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_tabs_holder"
+            android:background="@drawable/bg_lumina_ad_bar"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:visibility="gone" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/main_tabs_holder"
